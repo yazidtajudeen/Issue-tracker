@@ -3,6 +3,7 @@ import React from 'react'
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FaBug } from "react-icons/fa";
+import classNames from 'classnames';
 
 
 const NavBar = () => {
@@ -17,9 +18,14 @@ const NavBar = () => {
     items-center '>
     <Link href='/' className=''><FaBug /></Link>
 
-    <ul className='flex space-x-6'>  
+    <ul className='flex space-x-6 px-5'>  
         {links.map(link => 
-      <Link key={link.href} className={`${link.href === currentPath ? 'text-zinc-900' : 'text-zinc-500'} hover:text-zinc-800 transition-colors`} href= {link.href}>{link.name}</Link>
+      <Link key={link.href} className={classNames({
+        'text-zinc-900': link.href === currentPath,
+        'text-zinc-500': link.href !== currentPath,
+        'hover:text-zinc-800 transition-colors': true 
+
+      })} href= {link.href}>{link.name}</Link>
     )}
     
 
